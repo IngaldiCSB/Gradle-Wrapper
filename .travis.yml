@@ -1,4 +1,5 @@
 language: java
+
 env:
   global:
     - SURGE_lOGIN: cingaldi@scmgroup.com
@@ -7,4 +8,15 @@ env:
 install:
   - echo BIBBO
 script:
-  - ./gradlew clean buildDashboard
+  - ./gradlew test javadoc assemble buildDashboard
+
+deploy:
+  - provider: surge
+    project: build/reports/jacoco/test/html/
+    domain: ingaldi-coverage.surge.sh
+    skip_cleanup: true
+    on:
+      repo: IngaldiCSB/Gradle-Wrapper
+      branch: spike
+      jdk: openjdk8
+
