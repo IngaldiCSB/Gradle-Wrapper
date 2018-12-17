@@ -1,6 +1,22 @@
 language: java
 
+env:
+  global:
+    - SURGE_lOGIN: cingaldi@scmgroup.com
+    - SURGE_TOKEN: "rDxV/LZp685c+qRMe/75YkZUXMnEw8X3jqYxEzTpulpPyilLOdYL7vLwQ6YfS+iv7ESwLzOLstHDWjZue0RFCSYHTCZPUyXY55pYElQLLMjJjuxxzGPkHmAZvvmIex51C0tPAQKTCRqoCaF92XyIl3FytXK3uXLEW596Icfi3VXNj08HR34DphUxTvijj79kW7QNrIw/i2hPKyeyVS3Ttxv7KlyemG+fNjJBogCZuJ8/Bur8hsWWg1AA4rJTkSYtW7neTJzSGX4r1lX8q092FGy27G1QaoZdjB8l/vADe+44qr0wX97qu+1UtRXf/S8JxOJQ9tds0OBRbSKUTrPnUg1fTErFmGD9Xe8iWFKv0DxCHlOPus97m33pz3hq3Io1pYXs3E0dcys9GVuR9eE/0Nw84AoJP9LtIV8Z/CeccDxsuQuQXXTKJxNq7yNEXtHBtsCFZMl0qgqOywg5Ltx/6twcjlThOjPQPsbHyAXRgh+KQ3/56p+Z66KY5oqReOmzcr6WpT6GZn79L5Nu2fgGvSPS3Bu47jf9jTIRqNlPD7kH6QmQhuPllNzwqaZGZ6B7jDQB/PT1/CfYbUM1TkrDeYkIiPNB4oq6kMzdjb4yjk6suemZ8f24hdy2UFMK2dbbt8U2NcTvv7NQgosQd8UFYli2wer6K5L5QnOha+jf0aQ="
+
 install:
   - echo BIBBO
 script:
-  - ./gradlew clean buildDashboard
+  - ./gradlew buildDashboard
+
+deploy:
+  - provider: surge
+    project: build/reports/jacoco/test/html/
+    domain: ingaldi-coverage.surge.sh
+    skip_cleanup: true
+    on:
+      repo: IngaldiCSB/Gradle-Wrapper
+      branch: spike
+      jdk: openjdk8
+
