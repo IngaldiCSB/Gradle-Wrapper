@@ -19,4 +19,5 @@ deploy:
       repo: IngaldiCSB/Gradle-Wrapper
       branch: spike
       jdk: openjdk8
+      all_branches: true
 
