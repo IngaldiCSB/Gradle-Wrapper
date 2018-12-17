@@ -8,7 +8,7 @@ env:
 install:
   - echo BIBBO
 script:
-  - ./gradlew test javadoc assemble buildDashboard
+  - ./gradlew buildDashboard
 
 deploy:
   - provider: surge
