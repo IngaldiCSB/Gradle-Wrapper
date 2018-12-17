@@ -1,1 +1,6 @@
 language: java
+
+install:
+  - echo BIBBO
+script:
+  - ./gradlew clean buildDashboard
